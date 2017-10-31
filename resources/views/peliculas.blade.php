@@ -3,15 +3,23 @@
 
 @section('cuerpo')
 <h1>Películas</h1>
-<ul>
+<table border="1" width="90%">
 	@forelse($peliculas as $pelicula)
-		<li>
-			{{ $loop->iteration }} {{ $pelicula }}
-		</li>
+		<tr>
+			<td>{{ $pelicula->id }}</td>
+			<td>
+				<!-- <a href="{{ route('detalle_de_pelicula', ['id'=>$pelicula->id]) }}"> -->
+				<a href="{{ route('detalle_de_pelicula', $pelicula) }}">
+					{{ $pelicula->tituloConRating() }}
+				</a>
+			</td>
+			<td>{{ $pelicula->awards }}</td>
+			 
+		</tr>
 	@empty
-		<li>No hay películas</li>
+		<tr><td>No hay películas</td></tr>
 	@endforelse
-</ul>
+</table>
 @endsection
 
 @section('titulo')
