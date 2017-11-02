@@ -17,3 +17,9 @@ Route::post('peliculas/crear', 'PeliculasController@crear')->name('crear_pelicul
 
 Route::delete('pelicula/{id}', 'PeliculasController@eliminar')->name('eliminar_pelicula');
 
+Route::get('pelicula/{id}/editar', 'PeliculasController@editarFormulario')->name('form_editar_pelicula');
+
+Route::put('pelicula/{id}/editar', 'PeliculasController@editar')->name('editar_pelicula');
+
+
+

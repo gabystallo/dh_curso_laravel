@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pelicula extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'movies';
 
     protected $fillable = ['title', 'rating', 'release_date'];

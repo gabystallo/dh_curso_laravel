@@ -38,20 +38,21 @@ class PeliculasController extends Controller
 
         $peliculas = Pelicula::all();
 
-    	return view('peliculas', compact('peliculas'));
+    	return view('peliculas.peliculas', compact('peliculas'));
     }
 
     public function detalle($id)
     {
         $pelicula = Pelicula::find($id);
 
-        return view('pelicula', compact('pelicula'));
+        return view('peliculas.pelicula', compact('pelicula'));
     }
 
 
     public function crearFormulario()
     {
-        return view('crear-pelicula');
+        $pelicula = new Pelicula;
+        return view('peliculas.crear-pelicula', compact('pelicula'));
     }
 
     public function crear(Request $request)
@@ -92,6 +93,39 @@ class PeliculasController extends Controller
         $pelicula->delete();
 
         return redirect(route('listado_de_peliculas'));
+    }
+
+    public function editarFormulario($id)
+    {
+        $pelicula = Pelicula::findOrFail($id);
+
+        $pelicula->release_date = date('Y-m-d', strtotime($pelicula->release_date));
+
+        return view('peliculas.editar-pelicula', compact('pelicula'));
+    }
+
+    public function editar($id, Request $request)
+    {
+        $this->validate(
+            $request,
+            [
+                'title' => 'required',
+                'rating' => 'required|numeric|between:1,10',
+                'release_date' => 'required|date'
+            ],
+            [
+                'rating.between' => 'El puntaje debe estar entre 1 y 10.'
+            ]
+        );
+
+        $pelicula = Pelicula::findOrFail($id);
+
+        $pelicula->fill($request->all());
+
+        $pelicula->save();
+
+        return redirect(route('listado_de_peliculas'));
+
     }
 }
 

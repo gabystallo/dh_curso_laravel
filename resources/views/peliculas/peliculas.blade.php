@@ -20,6 +20,9 @@
 			</td>
 			<td>{{ $pelicula->awards }}</td>
 			<td>
+				<a href="{{ route('form_editar_pelicula', $pelicula) }}">editar</a>
+			</td>
+			<td>
 				<form method="POST" action="{{ route('eliminar_pelicula', $pelicula) }}" onsubmit="return confirm('seguro?')">
 					{{ method_field('DELETE') }}
 					{{ csrf_field() }}
