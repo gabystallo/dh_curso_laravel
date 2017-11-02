@@ -11,3 +11,9 @@ Route::get('peliculas', 'PeliculasController@listar')->name('listado_de_pelicula
 
 Route::get('pelicula/{id}', 'PeliculasController@detalle')->name('detalle_de_pelicula');
 
+Route::get('peliculas/crear', 'PeliculasController@crearFormulario')->name('form_crear_pelicula');
+
+Route::post('peliculas/crear', 'PeliculasController@crear')->name('crear_pelicula');
+
+Route::delete('pelicula/{id}', 'PeliculasController@eliminar')->name('eliminar_pelicula');
+

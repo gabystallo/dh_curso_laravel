@@ -3,6 +3,11 @@
 
 @section('cuerpo')
 <h1>Películas</h1>
+
+<p>
+	<a href="{{ route('form_crear_pelicula') }}">crear nueva</a>
+</p>
+
 <table border="1" width="90%">
 	@forelse($peliculas as $pelicula)
 		<tr>
@@ -14,7 +19,14 @@
 				</a>
 			</td>
 			<td>{{ $pelicula->awards }}</td>
-			 
+			<td>
+				<form method="POST" action="{{ route('eliminar_pelicula', $pelicula) }}" onsubmit="return confirm('seguro?')">
+					{{ method_field('DELETE') }}
+					{{ csrf_field() }}
+					<button type="submit">X</button>
+					
+				</form>
+			</td>
 		</tr>
 	@empty
 		<tr><td>No hay películas</td></tr>

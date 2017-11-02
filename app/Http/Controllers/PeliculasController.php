@@ -47,4 +47,57 @@ class PeliculasController extends Controller
 
         return view('pelicula', compact('pelicula'));
     }
+
+
+    public function crearFormulario()
+    {
+        return view('crear-pelicula');
+    }
+
+    public function crear(Request $request)
+    {
+        $this->validate(
+            $request,
+            [
+                'title' => 'required|unique:movies',
+                'rating' => 'required|numeric|between:1,10',
+                'release_date' => 'required|date'
+            ],
+            [
+                'title.unique' => 'No puede haber 2 películas con el mismo título.',
+                'rating.between' => 'El puntaje debe estar entre 1 y 10.'
+            ]
+        );
+
+        $pelicula = new Pelicula($request->all());
+
+        // $pelicula->title = $request->input('title');
+        // $pelicula->rating = $request->input('rating');
+        // $pelicula->release_date = $request->input('release_date');
+
+        //dd($pelicula);
+
+        $pelicula->save();
+
+        //return 'se creo la pelicula id: ' . $pelicula->id;
+
+        return redirect(route('listado_de_peliculas'));
+    }
+
+
+    public function eliminar($id)
+    {
+        $pelicula = Pelicula::findOrFail($id);
+
+        $pelicula->delete();
+
+        return redirect(route('listado_de_peliculas'));
+    }
 }
+
+
+
+
+
+
+

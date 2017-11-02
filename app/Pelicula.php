@@ -8,6 +8,8 @@ class Pelicula extends Model
 {
     protected $table = 'movies';
 
+    protected $fillable = ['title', 'rating', 'release_date'];
+
 
     public function tituloConRating()
     {
