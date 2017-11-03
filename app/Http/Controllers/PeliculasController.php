@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pelicula;
+use App\Genero;
 
 use DB;
 
@@ -36,7 +37,17 @@ class PeliculasController extends Controller
         // dd($ejemplo);
 
 
-        $peliculas = Pelicula::all();
+        //$peliculas = Pelicula::all();
+        //$peliculas = Pelicula::with('genero')->get();
+        $genero = Genero::find(8);
+
+
+        $peliculas = $genero->peliculas; //peliculas()->get()
+
+        //dd($genero);
+
+
+        //dd($genero->peliculas()->count());
 
     	return view('peliculas.peliculas', compact('peliculas'));
     }
@@ -44,6 +55,8 @@ class PeliculasController extends Controller
     public function detalle($id)
     {
         $pelicula = Pelicula::find($id);
+
+        //$genero = $pelicula->genero;
 
         return view('peliculas.pelicula', compact('pelicula'));
     }
@@ -114,6 +127,8 @@ class PeliculasController extends Controller
                 'release_date' => 'required|date'
             ],
             [
+                'title.required' => 'El título es obligatorio.',
+                'rating.required' => 'El puntaje es obligatorio.',
                 'rating.between' => 'El puntaje debe estar entre 1 y 10.'
             ]
         );

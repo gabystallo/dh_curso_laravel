@@ -18,6 +18,12 @@
 					{{ $pelicula->tituloConRating() }}
 				</a>
 			</td>
+			<td>
+				@if($pelicula->genero)
+					{{ $pelicula->genero->name }}
+				@endif
+
+			</td>
 			<td>{{ $pelicula->awards }}</td>
 			<td>
 				<a href="{{ route('form_editar_pelicula', $pelicula) }}">editar</a>
