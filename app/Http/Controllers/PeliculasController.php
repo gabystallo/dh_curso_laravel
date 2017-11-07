@@ -38,11 +38,12 @@ class PeliculasController extends Controller
 
 
         //$peliculas = Pelicula::all();
+
+
+        $peliculas = Pelicula::paginate(10);
         //$peliculas = Pelicula::with('genero')->get();
-        $genero = Genero::find(8);
-
-
-        $peliculas = $genero->peliculas; //peliculas()->get()
+        //$genero = Genero::find(8);
+        //$peliculas = $genero->peliculas; //peliculas()->get()
 
         //dd($genero);
 

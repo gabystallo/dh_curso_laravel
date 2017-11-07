@@ -8,6 +8,10 @@
 	<a href="{{ route('form_crear_pelicula') }}">crear nueva</a>
 </p>
 
+<div style="margin-bottom:20px;">
+	{{ $peliculas->links() }}
+</div>
+
 <table border="1" width="90%">
 	@forelse($peliculas as $pelicula)
 		<tr>
@@ -41,6 +45,11 @@
 		<tr><td>No hay películas</td></tr>
 	@endforelse
 </table>
+
+<div>
+	{{ $peliculas->links() }}
+</div>
+
 @endsection
 
 @section('titulo')

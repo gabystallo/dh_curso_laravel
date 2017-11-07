@@ -22,4 +22,12 @@ Route::get('pelicula/{id}/editar', 'PeliculasController@editarFormulario')->name
 Route::put('pelicula/{id}/editar', 'PeliculasController@editar')->name('editar_pelicula');
 
 
+Route::resource('actores', 'ActoresController');
+
+
+Route::get('colecciones', 'EjemplosController@colecciones');
+
+Route::get('subir', 'EjemplosController@mostrarSubir');
+
+Route::post('subir', 'EjemplosController@subir');
 
