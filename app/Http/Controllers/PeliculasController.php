@@ -12,6 +12,11 @@ use DB;
 class PeliculasController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function listar()
     {
     	//$peliculas = Pelicula::where('rating', '>', 8)

@@ -15,7 +15,7 @@ Route::get('peliculas/crear', 'PeliculasController@crearFormulario')->name('form
 
 Route::post('peliculas/crear', 'PeliculasController@crear')->name('crear_pelicula');
 
-Route::delete('pelicula/{id}', 'PeliculasController@eliminar')->name('eliminar_pelicula');
+Route::delete('pelicula/{id}', 'PeliculasController@eliminar')->name('eliminar_pelicula')->middleware('es_admin');
 
 Route::get('pelicula/{id}/editar', 'PeliculasController@editarFormulario')->name('form_editar_pelicula');
 
@@ -30,4 +30,21 @@ Route::get('colecciones', 'EjemplosController@colecciones');
 Route::get('subir', 'EjemplosController@mostrarSubir');
 
 Route::post('subir', 'EjemplosController@subir');
+
+
+Route::get('/', 'EjemplosController@mostrarSubir');
+
+Auth::routes();
+
+//Route::get('/homeeee', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+
+
+
+
+
+
 
