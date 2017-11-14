@@ -14,7 +14,7 @@ class PeliculasController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['verAPI']);
     }
 
     public function listar()
@@ -67,6 +67,14 @@ class PeliculasController extends Controller
         return view('peliculas.pelicula', compact('pelicula'));
     }
 
+    public function verAPI($id)
+    {
+        $pelicula = Pelicula::findOrFail($id);
+
+
+        return $pelicula;
+    }
+
 
     public function crearFormulario()
     {
@@ -85,7 +93,10 @@ class PeliculasController extends Controller
             ],
             [
                 'title.unique' => 'No puede haber 2 películas con el mismo título.',
-                'rating.between' => 'El puntaje debe estar entre 1 y 10.'
+                'rating.between' => 'Poné un puntaje de IMDB válido.'
+            ],
+            [
+                'release_date' => 'fecha de estreno'
             ]
         );
 

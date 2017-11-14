@@ -5,6 +5,8 @@ namespace App\Http\Middleware;
 use Closure;
 use Auth;
 
+use Illuminate\Foundation\Testing\HttpException;
+
 class ValidarAdmin
 {
     /**

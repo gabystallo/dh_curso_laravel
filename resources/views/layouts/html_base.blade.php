@@ -9,6 +9,8 @@
 		.paginas li.active { border:1px solid blue; }
 	</style>
 
+	<script src="{{ mix('js/app.js') }}"></script>
+
 </head>
 <body>
 	<nav>

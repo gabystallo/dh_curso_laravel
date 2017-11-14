@@ -41,6 +41,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
+Route::get('/obtener/info/ip', 'EjemplosController@testAPI');
+
 
 
 

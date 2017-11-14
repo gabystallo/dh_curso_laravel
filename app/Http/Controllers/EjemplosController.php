@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Ixudra\Curl\Facades\Curl;
+
 class EjemplosController extends Controller
 {
     public function colecciones()
@@ -50,6 +52,17 @@ class EjemplosController extends Controller
     	//dd('se guardó la imagen en: ' . $path);
 
     	return redirect('/subir');
+    }
+
+    public function testAPI()
+    {
+        $ip = '8.8.8.8';
+        $response = Curl::to('http://ip-api.com/json/' . $ip)
+            ->asJson()
+            ->get();
+
+
+        return 'La Ip que pasaste pertenece a ' . $response->country;
     }
 
 }
