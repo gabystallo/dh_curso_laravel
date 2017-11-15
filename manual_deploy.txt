@@ -1,0 +1,31 @@
+1) entré al servidor con:
+
+ssh root@cursodh.axys.com.ar
+
+1.1) apt-get update
+
+2) instalar apache+php+mysql-server
+
+apt-get install apache2 php mysql-server libapache2-mod-php
+
+3) instalar dependencias de php para laravel
+
+apt-get install php7.0-xml php-cli php-mysql   # en debian también php-mbstring
+
+4) instalar dependencias para composer
+
+apt-get install git curl
+
+5) instalar composer
+
+curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+
+6) instalar phpmyadmin
+6.1) crear la base de datos
+6.2) importar la base de datos
+6.3) crear un usuario
+6.4) darle al usuario privilegios sobre la base de datos que cree
+
+7) le creo un usuario
+
+

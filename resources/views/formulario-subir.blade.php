@@ -3,7 +3,7 @@
 @section('cuerpo')
 
 <div style="margin:20px 0;">
-	<form method="post" enctype="multipart/form-data">
+	<form method="post" enctype="multipart/form-data" action="/subir">
 		{{ csrf_field() }}
 		<div style="margin:20px 0;">
 			<label>Archivo:</label>
