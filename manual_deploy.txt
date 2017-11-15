@@ -10,7 +10,7 @@ apt-get install apache2 php mysql-server libapache2-mod-php
 
 3) instalar dependencias de php para laravel
 
-apt-get install php7.0-xml php-cli php-mysql   # en debian también php-mbstring
+apt-get install php-xml php-mbstring php-cli php-mysql   # en debian también php-mbstring
 
 4) instalar dependencias para composer
 
