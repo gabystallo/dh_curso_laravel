@@ -10,5 +10,5 @@ require('./bootstrap');
 require('sweetalert');
 
 $(function() {
-	swal( "Bien!" ,  "Registro guardado!" ,  "success" );
+	//swal( "Bien!" ,  "Registro guardado!" ,  "success" );
 });

@@ -14,7 +14,7 @@ apt-get install php7.0-xml php-cli php-mysql   # en debian también php-mbstring
 
 4) instalar dependencias para composer
 
-apt-get install git curl
+apt-get install git curl php-zip zip
 
 5) instalar composer
 
@@ -28,4 +28,57 @@ curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/loca
 
 7) le creo un usuario
 
+adduser cursodh
 
+8) me logueo como ese usuario
+
+su cursodh
+cd   #esto es para ir a la home del usuario
+
+9) clonar el repositorio
+9.1) composer install
+9.2) cp .env.example .env
+9.3) php artisan key:generate
+9.4) entrar a .env y configurar  (nano .env)
+
+9.9) volver a ser root (exit)
+
+10) instalar módulo de apache para que cada virtualhost (sitio) corra con su usuario particular
+
+apt-get install libapache2-mpm-itk
+
+11) configurar apache (configurar el virtualhost de mi proyecto)
+(como root)
+11.a) cd /etc/apache2/sites-available
+11.b) crear archivo de virtualhost 010-cursodh.conf
+11.c) configurar archivo:
+
+<VirtualHost *:80>
+    <IfModule mpm_itk_module>
+        AssignUserId cursodh cursodh
+    </IfModule>
+    ServerName cursodh.axys.com.ar
+    #ServerAlias ....
+    ServerSignature On
+    DocumentRoot "/home/cursodh/aplicacion/public"
+    <Directory /home/cursodh/aplicacion/public>
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+        Require all granted
+        DirectoryIndex index.php
+        Options -Indexes
+    </Directory>
+</VirtualHost>
+
+11.d) activar módulo rewrite
+
+a2enmod rewrite
+
+11.e) activar el virtualhost que creé
+
+a2ensite 010-cursodh.conf
+
+11.f) reiniciar apache para aplicar todo
+
+service apache2 restart
